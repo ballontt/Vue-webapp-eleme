@@ -1,0 +1,4 @@
+build/*.js
+config/*.js
+src/common/stylus/icon.styl
+src/common/js/data.js
