@@ -73,8 +73,9 @@
   import Shopcart from 'components/shopcart/shopcart';
   import Cartcontrol from 'components/cartcontrol/cartcontrol';
   import Food from 'components/food/food';
+  import {goodsData} from 'common/js/mock_data';
 
-  const ERR_OK = 0;
+  // const ERR_OK = 0;
 
   export default {
     props: {
@@ -93,19 +94,27 @@
     created() {   // 生命周期钩子函数，实例化Vue调用
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
       // get请求
-      this.$http.get('/api/goods').then((response) => {
-        // 获得json
-        response = response.body;
-        // 判定状态码
-        if (response.errno === ERR_OK) {
-          this.goods = response.data;
-          // Dom渲染结束后的回调
-          this.$nextTick(() => {
-            this._initScroll();
-            this._calculateHeight();
-          });
-        }
-      });
+//      this.$http.get('/api/goods').then((response) => {
+//        // 获得json
+//        response = response.body;
+//        // 判定状态码
+//        if (response.errno === ERR_OK) {
+//          this.goods = response.data;
+//          // Dom渲染结束后的回调
+//          this.$nextTick(() => {
+//            this._initScroll();
+//            this._calculateHeight();
+//          });
+//        }
+//      });
+      this.goods = goodsData();
+      if (this.goods) {
+        // Dom渲染结束后的回调
+        this.$nextTick(() => {
+          this._initScroll();
+          this._calculateHeight();
+        });
+      }
     },
     methods: {
       // 滚动

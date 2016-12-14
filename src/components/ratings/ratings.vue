@@ -78,9 +78,10 @@
   import Ratingselect from 'components/ratingselect/ratingselect';
   import {formatDate} from 'common/js/date';
   import BScroll from 'better-scroll';
+  import {ratingsData} from 'common/js/mock_data';
 
   const ALL = 2;
-  const ERR_OK = 0;
+  // const ERR_OK = 0;
 
   export default {
     props: {
@@ -101,17 +102,26 @@
       };
     },
     created() {
-      this.$http.get('/api/ratings').then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.ratings = response.data;
-          this.$nextTick(() => {
-            this.scroll = new BScroll(this.$els.ratings, {
-              click: true
-            });
+//      this.$http.get('/api/ratings').then((response) => {
+//        response = response.body;
+//        if (response.errno === ERR_OK) {
+//          this.ratings = response.data;
+//          this.$nextTick(() => {
+//            this.scroll = new BScroll(this.$els.ratings, {
+//              click: true
+//            });
+//          });
+//        }
+//      });
+      this.ratings = ratingsData();
+      if (this.ratings) {
+        // Dom渲染结束后的回调
+        this.$nextTick(() => {
+          this.scroll = new BScroll(this.$els.ratings, {
+            click: true
           });
-        }
-      });
+        });
+      }
     },
     events: {
       'ratingtype.select'(type) {

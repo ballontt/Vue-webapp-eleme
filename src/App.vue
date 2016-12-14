@@ -19,8 +19,9 @@
 <script type="text/ecmascript-6">
   import header from 'components/header/header.vue';
   import {urlParse} from 'common/js/util';
+  import {sellerData} from 'common/js/mock_data';
 
-  const ERR_OK = 0;
+  // const ERR_OK = 0;
 
   export default {
     data() {
@@ -34,12 +35,13 @@
       };
     },
     created() {
-      this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.seller = Object.assign({}, this.seller, response.data);
-        }
-      });
+//      this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+//        response = response.body;
+//        if (response.errno === ERR_OK) {
+//          this.seller = Object.assign({}, this.seller, response.data);
+//        }
+//      });
+      this.seller = sellerData();
     },
     components: {
       'v-header': header

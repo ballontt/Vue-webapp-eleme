@@ -1,4 +1,5 @@
 build/*.js
 config/*.js
+src/common/js/mock_data.js
 src/common/stylus/icon.styl
 src/common/js/data.js
